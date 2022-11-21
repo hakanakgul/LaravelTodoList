@@ -9,7 +9,19 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg text-center">
 
-                CONTENT AREA
+                @if (Auth::user()->LicenseId == 10000)
+                    {{-- role:user --}}
+                    <script>
+                        window.location = "{{ route('user.homepage') }}";
+                    </script>
+                @elseif(Auth::user()->LicenseId == 20000)
+                    {{-- role:admin --}}
+                    <script>
+                        window.location = "{{ route('admin.homepage') }}";
+                    </script>
+                @else
+                    You're not authorized.
+                @endif
 
 
             </div>

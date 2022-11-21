@@ -6,4 +6,14 @@ Since I could not find enough motivation in the main project, I am doing this pr
 
 Laravel, Livewire, Tailwindcss technologies are used.
 
+## How to build the project
+
+Install the dependencies and start the server.
+
+```sh
+npm install
+php artisan projectinit
+php artisan serve
+```
+
 Thanks.

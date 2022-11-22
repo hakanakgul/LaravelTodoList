@@ -1,5 +1,4 @@
 <div>
-    Welcome user.
-    <br>
-    Welcome {{ Auth::user()->name }}
+    @component('components.todos.todo-card-component', ['todos' => $todos])
+    @endcomponent
 </div>

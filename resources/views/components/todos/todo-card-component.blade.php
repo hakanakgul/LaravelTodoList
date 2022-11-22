@@ -1,5 +1,7 @@
 <div>
 
+    {{-- The design shared by Rob Stinson on the codepen was used. --}}
+
     <style>
         input[type=checkbox]:checked+label span:first-of-type {
             background-color: #10B981;

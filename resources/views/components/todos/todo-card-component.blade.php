@@ -26,7 +26,8 @@
                 </div>
 
                 <button class="flex items-center w-full h-8 px-2 mt-2 text-sm font-medium rounded mb-2">
-                    <svg wire:click='addNewTask'
+                    <svg wire:click='addNewTask' wire:loading.attr='disabled'
+                        wire:target='deleteTask, changeStatus, addNewTask, updateTask'
                         class="w-5 h-5 text-gray-400 fill-current hover:text-gray-500 hover:bg-gray-200 hover:rounded-lg active:text-gray-400"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -41,36 +42,45 @@
                         {{ $message }}
                     </div>
                 @enderror
-                @foreach ($todos as $todo)
-                    <div class="relative">
-                        {{-- <a wire:click='updateTask({{ $todo->TodoListId }})'
+                {{-- if we use wire:poll then we can sync all devices/sessions for the user. --}}
+                <div wire:poll>
+                    @foreach ($todos as $todo)
+                        <div class="relative">
+                            {{-- <a wire:click='updateTask({{ $todo->TodoListId }})' wire:loading.attr='disabled'
+                                wire:target='deleteTask, changeStatus, addNewTask, updateTask'
                             class="absolute right-6 p-1 mt-1 text-green-400 fill-current select-none cursor-pointer hover:text-green-500 hover:bg-green-200 hover:rounded-lg active:text-green-400
                             fa fa-edit">
                         </a> --}}
-                        <a wire:click='deleteTask({{ $todo->TodoListId }})'
-                            class="absolute right-0 p-1 mt-1 text-red-400 fill-current select-none cursor-pointer hover:text-red-500 hover:bg-red-200 hover:rounded-lg active:text-red-400
+                            <button wire:click='deleteTask({{ $todo->TodoListId }})' wire:loading.attr='disabled'
+                                wire:target='deleteTask, changeStatus, addNewTask, updateTask'
+                                class="absolute right-0 p-1 mt-1 text-red-400 fill-current select-none cursor-pointer hover:text-red-500 hover:bg-red-200 hover:rounded-lg active:text-red-400
                             fa fa-trash">
-                        </a>
+                            </button>
 
-                        <input wire:click='changeStatus({{ $todo->TodoListId }})' class="hidden" type="checkbox"
-                            id="task_{{ $todo->TodoListId }}" {{ $todo->Status == 0 ? 'checked' : '' }}>
-                        <label class="flex items-center h-10 px-2 rounded cursor-pointer hover:bg-gray-100"
-                            for="task_{{ $todo->TodoListId }}">
-                            <span
-                                class="flex items-center justify-center w-5 h-5 text-transparent border-2 border-gray-300 rounded-full">
-                                <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </span>
-                            <span class="ml-4 text-sm select-none">{{ $todo->TodoTitle }}</span>
 
-                        </label>
-                    </div>
-                @endforeach
+                            <input wire:click='changeStatus({{ $todo->TodoListId }})' wire:loading.attr='disabled'
+                                wire:target='deleteTask, changeStatus, addNewTask, updateTask' class="hidden"
+                                type="checkbox" id="task_{{ $todo->TodoListId }}"
+                                {{ $todo->Status == 0 ? 'checked' : '' }}>
+                            <label class="flex items-center h-10 px-2 rounded cursor-pointer hover:bg-gray-100 mr-5"
+                                for="task_{{ $todo->TodoListId }}">
+                                <span
+                                    class="flex items-center justify-center w-5 h-5 text-transparent border-2 border-gray-300 rounded-full">
+                                    <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                                <span class="ml-4 text-sm select-none">{{ $todo->TodoTitle }}
+                                </span>
 
+                            </label>
+                        </div>
+                    @endforeach
+
+                </div>
             </div>
             <!-- Component End  -->
         </div>

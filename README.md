@@ -16,4 +16,6 @@ php artisan projectinit
 php artisan serve
 ```
 
+![Alt text](/image.png "Screenshot")
+
 Thanks.

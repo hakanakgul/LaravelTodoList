@@ -64,15 +64,15 @@ class TodoListLivewire extends Component
         $this->todo = array();
     }
 
-    public function updateTask(TodoList $id)
+    public function updateTask(TodoList $task)
     {
     }
 
-    public function deleteTask(TodoList $id)
+    public function deleteTask(TodoList $task)
     {
-
-        $id->delete();
-
-  
+        // deleting data is not always the best option.
+        // we could update the status of the task. 
+        // but in this case storing the data is not important. 
+        $task->delete();
     }
 }

@@ -1038,6 +1038,18 @@ select {
 .right-10 {
   right: 2.5rem;
 }
+.right-8 {
+  right: 2rem;
+}
+.right-11 {
+  right: 2.75rem;
+}
+.right-5 {
+  right: 1.25rem;
+}
+.right-6 {
+  right: 1.5rem;
+}
 .z-0 {
   z-index: 0;
 }
@@ -1128,6 +1140,9 @@ select {
 }
 .-mt-px {
   margin-top: -1px;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
 }
 .block {
   display: block;

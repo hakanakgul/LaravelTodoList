@@ -25,7 +25,7 @@
                     <h4 class="font-semibold ml-3 text-lg">{{ Auth::user()->name }}'s Jobs</h4>
                 </div>
 
-                <button class="flex items-center w-full h-8 px-2 mt-2 text-sm font-medium rounded">
+                <button class="flex items-center w-full h-8 px-2 mt-2 text-sm font-medium rounded mb-2">
                     <svg wire:click='addNewTask'
                         class="w-5 h-5 text-gray-400 fill-current hover:text-gray-500 hover:bg-gray-200 hover:rounded-lg active:text-gray-400"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -42,7 +42,16 @@
                     </div>
                 @enderror
                 @foreach ($todos as $todo)
-                    <div wire:ignore>
+                    <div class="relative">
+                        {{-- <a wire:click='updateTask({{ $todo->TodoListId }})'
+                            class="absolute right-6 p-1 mt-1 text-green-400 fill-current select-none cursor-pointer hover:text-green-500 hover:bg-green-200 hover:rounded-lg active:text-green-400
+                            fa fa-edit">
+                        </a> --}}
+                        <a wire:click='deleteTask({{ $todo->TodoListId }})'
+                            class="absolute right-0 p-1 mt-1 text-red-400 fill-current select-none cursor-pointer hover:text-red-500 hover:bg-red-200 hover:rounded-lg active:text-red-400
+                            fa fa-trash">
+                        </a>
+
                         <input wire:click='changeStatus({{ $todo->TodoListId }})' class="hidden" type="checkbox"
                             id="task_{{ $todo->TodoListId }}" {{ $todo->Status == 0 ? 'checked' : '' }}>
                         <label class="flex items-center h-10 px-2 rounded cursor-pointer hover:bg-gray-100"
@@ -57,9 +66,8 @@
                                 </svg>
                             </span>
                             <span class="ml-4 text-sm select-none">{{ $todo->TodoTitle }}</span>
-                            <div class="float-end">X</div>
-                        </label>
 
+                        </label>
                     </div>
                 @endforeach
 

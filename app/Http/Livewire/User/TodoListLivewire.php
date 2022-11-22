@@ -39,6 +39,8 @@ class TodoListLivewire extends Component
 
     public function render()
     {
+        $this->getTodos();
+
         return view('livewire.user.todo-list-livewire');
     }
     public function changeStatus(TodoList $id)
@@ -60,9 +62,17 @@ class TodoListLivewire extends Component
         ]);
 
         $this->todo = array();
-        $this->getTodos();
+    }
 
+    public function updateTask(TodoList $id)
+    {
+    }
 
-        $this->render();
+    public function deleteTask(TodoList $id)
+    {
+
+        $id->delete();
+
+  
     }
 }

@@ -11,6 +11,8 @@ Laravel, Livewire, Tailwindcss technologies are used.
 Install the dependencies and start the server.
 
 ```sh
+create a new database called 'LaravelTodoList' (or you can change the name on .env file)
+
 npm install
 php artisan projectinit
 php artisan serve
